@@ -17,7 +17,7 @@ function App() {
     e.preventDefault();
 
     const response = await fetch(
-      "https://main--electriclitybillcalculator.netlify.app/.netlify/functions/api/calculate",
+      "http://localhost:9000/.netlify/functions/api/calculate",
       {
         method: "POST",
         headers: {
@@ -29,6 +29,7 @@ function App() {
 
     const data = await response.json();
     setResult(data);
+
   };
 
   return (
@@ -64,13 +65,10 @@ function App() {
         </form>
         {result && (
           <div className="result">
-            <h5>Calculation Result:</h5>
-            <p>{`The calculated bill is: ${result.bill}`}</p>
+            <h5>Total Billabe Amount:</h5>
+            <h2>{`Rs. ${Math.round(result.bill)}`}</h2>
             <h5>Break up of the bill </h5>
             <table>
-              <caption>
-                Slab-wise break up
-              </caption>
               <thead>
                 <tr>
                   <th scope="col">From Unit</th>
