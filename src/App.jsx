@@ -17,7 +17,7 @@ function App() {
     e.preventDefault();
 
     const response = await fetch(
-      "https://master--fanciful-cuchufli-1fac6a.netlify.app/.netlify/functions/api/calculate",
+      "https://main--electriclitybillcalculator.netlify.app/.netlify/functions/api/calculate",
       {
         method: "POST",
         headers: {
