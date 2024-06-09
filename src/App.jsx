@@ -6,6 +6,8 @@ function App() {
 
   const [result, setResult] = useState(null);
 
+  const [store, setStore] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -16,19 +18,31 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://electriclitybillcalculator.netlify.app/.netlify/functions/api/calculate",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+    if (formData.selectedState != "None" && formData.units.trim() !== "") {
 
-    const data = await response.json();
-    setResult(data);
+      const response = await fetch(
+        "https://electricitybillcalculator.in/.netlify/functions/api/calculate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+  
+      const data = await response.json();
+      data.bill = parseFloat(data.bill);
+      
+      setResult(data);
+
+      setStore(false);
+
+    }
+
+    else {
+      setStore(true);
+    }
 
   };
 
@@ -45,9 +59,9 @@ function App() {
           <label className="stateStyle">
             State:
             <select className="fieldStyle" name="selectedState" value={formData.selectedState} onChange={handleChange}>
-              <option value="None">None</option>
+              <option value="None" >Select the State</option>
               {[
-                "Andhra Pradesh", "Arunachal Pradesh","Assam","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Kerala","Madhya Pradesh", "Maharashtra", "Manipur","Meghalaya","Nagaland","Odisha","Punjab","Rajasthan","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"
+                "Tamil Nadu","Telangana"
               ].map((state) => (
                 <option key={state} value={state}>
                   {state}
@@ -60,20 +74,20 @@ function App() {
             <input
               className="fieldStyle-1"
               autoComplete="off"
-              type="text"
+              type="number"
               name="units"
               value={formData.units}
               onChange={handleChange}
             />
           </label>
+          {store && <p style={{ color: 'Red', fontSize: '18px' }}>Invalid Input!</p>}
           <p>Note: Fixed charges are calculated assuming the billing is Bi-Monthly</p>
           <input className="submitStyle" type="submit" value="Calculate" />
         </form>
         }
         {result && (
           <div className="result">
-            <h5>Total Billabe Amount:</h5>
-            <h2>{`₹ ${Math.round(result.bill)}`}</h2>
+            <h5>Total Billable Amount: <span className="bill-amount">₹ {(Math.round(result.bill)).toLocaleString()}</span></h5>
             <h5>Break up of the bill </h5>
             <table style={{ border: 'none' }} className="tableStyle">
               <thead>
@@ -113,7 +127,7 @@ function App() {
                 <td style={{ border: 'none' }}></td>
                 <td style={{ border: 'none' }}></td>
                 <td className="roundCorner3"><strong>Total Bill</strong></td>
-                <td className="roundCorner4"><strong>₹{Math.round(result.bill)}</strong></td>
+                <td className="roundCorner4"><strong>₹ {(Math.round(result.bill)).toLocaleString()}</strong></td>
               </tr>
             </tbody>
             </table>

@@ -13,30 +13,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const rates = {
-  "Andhra Pradesh": 5.5,
-  "Arunachal Pradesh": 4.5,
-  "Assam": 5.0,
-  "Chhattisgarh": 5.3,
-  "Goa": 5.2,
-  "Gujarat": 6.0,
-  "Haryana": 5.7,
-  "Himachal Pradesh": 4.8,
-  "Jharkhand": 5.4,
-  "Kerala": 5.1,
-  "Madhya Pradesh": 5.6,
-  "Maharashtra": 5.9,
-  "Manipur": 4.9,
-  "Meghalaya": 5.0,
-  "Nagaland": 4.7,
-  "Odisha": 5.3,
-  "Punjab": 5.8,
-  "Rajasthan": 6.1,
   "Tamil Nadu": tamilnaduRate,
   "Telangana": telanganaRate,
-  "Tripura": 4.6,
-  "Uttar Pradesh": 5.5,
-  "Uttarakhand": 5.2,
-  "West Bengal": 5.6
 };
 
 router.post('/calculate', (req, res) => {

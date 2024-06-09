@@ -21,7 +21,7 @@
 h4 {
   font-size: 40px;
   text-align: center;
-  padding: 2%;
+  padding: 1%;
 }
 
 p {
@@ -42,7 +42,7 @@ label {
 }
 
 /* Input styles */
-input[type="text"],
+input[type="number"],
 select {
   width: 100%;
   padding: 12px;
@@ -146,6 +146,12 @@ tfoot td {
   margin-bottom: 30px;
 }
 
+.bill-amount {
+  font-size: 28px;
+  font-weight: 900;
+  margin-left: 10px;
+}
+
 @media only screen and (max-width: 600px) {
   .form-box {
     display: flex;
@@ -172,7 +178,7 @@ tfoot td {
   }
   
   .submitStyle {
-    padding: 3%;
+    padding: 5%;
 
   } 
 }
