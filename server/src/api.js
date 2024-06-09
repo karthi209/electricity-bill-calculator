@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const tamilnaduRate = require('./tamilnaduBilling');
+const telanganaRate = require('./telanganaBilling');
 
 const app = express();
 const router = express.Router();
@@ -31,7 +32,7 @@ const rates = {
   "Punjab": 5.8,
   "Rajasthan": 6.1,
   "Tamil Nadu": tamilnaduRate,
-  "Telangana": 5.5,
+  "Telangana": telanganaRate,
   "Tripura": 4.6,
   "Uttar Pradesh": 5.5,
   "Uttarakhand": 5.2,
@@ -52,12 +53,15 @@ router.post('/calculate', (req, res) => {
     return res.status(400).json({ error: 'Invalid number of units' });
   }
 
-  let bill, breakdown;
+  let bill, breakdown, customerCharge, sourceText, lastUpdateText;
   if (typeof rate === 'function') {
     // Call the specific rate function for the state
     const result = rate(unitCount);
     bill = result.bill;
     breakdown = result.breakdown;
+    customerCharge = result.customerCharge;
+    sourceText = result.sourceText;
+    lastUpdateText = result.lastUpdateText;
   } else {
     // Use the flat rate
     bill = rate * unitCount;
@@ -65,7 +69,7 @@ router.post('/calculate', (req, res) => {
     
   }
 
-  res.json({ bill, breakdown });
+  res.json({ bill, breakdown, customerCharge, sourceText, lastUpdateText });
 
 });
 

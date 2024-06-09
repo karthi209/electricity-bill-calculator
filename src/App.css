@@ -4,10 +4,11 @@
   flex-direction: column;
   align-items: left;
   margin: 5% auto;
+  margin-top: 0%;
   max-width: 50%;
   justify-content: space-around;
   color: black;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Anek Latin", sans-serif;
   font-weight: 400;
 }
 
@@ -18,9 +19,14 @@
 }
 
 h4 {
-  font-size: 22px;
+  font-size: 40px;
   text-align: center;
   padding: 2%;
+}
+
+p {
+  font-size: small;
+  align-items: left;
 }
 
 /* Label styles */
@@ -30,9 +36,9 @@ label {
   color: #555;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: left;
   font-size: 16px;
-  font-family: "Fira Sans", sans-serif;
+  background-color: #FAF9F6;
 }
 
 /* Input styles */
@@ -46,38 +52,52 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: "Fira Sans", sans-serif;
-}
-
-/* Button styles */
-button {
-  width: 100%;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  font-family: "Fira Sans", sans-serif;
-}
-
-button:hover {
-  background-color: #0056b3;
+  background-color: #FAF9F6;
 }
 
 .submitStyle {
+  width: 30%;
   display: block;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 2%;
-  font-family: "Fira Sans", sans-serif;
-  background-color: #78586f;
+  background-color: #383838;
   color: white;
   border: none;
   padding: 2%;
   border-radius: 8px;
+}
+
+.marginGap {
+  margin-top: 30px;
+}
+
+.roundCorner1 {
+  background-color: #f2f2f2;
+  border-top-left-radius: 5px;
+}
+
+.roundCorner2 {
+  background-color: #f2f2f2;
+  border-top-right-radius: 5px;
+}
+
+.roundCorner3 {
+  background-color: #f2f2f2;
+  border-bottom-left-radius: 5px;
+}
+
+.roundCorner4 {
+  background-color: #f2f2f2;
+  border-bottom-right-radius: 5px;
+}
+
+.bcFix {
+  background-color: #f2f2f2;
+}
+
+.fixBor {
+  border: none;
 }
 
 .result {
@@ -85,7 +105,6 @@ button:hover {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  font-family: "Fira Sans", sans-serif;
   font-weight: 400;
 }
 
@@ -94,10 +113,11 @@ h2 {
 }
 
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
   border: 2px solid rgb(140 140 140);
-  font-family: "Fira Sans", sans-serif;
   letter-spacing: 1px;
+  border-spacing: 0;
+  position: relative;
 }
 
 th,
@@ -118,7 +138,13 @@ tfoot td {
   font-weight: bold;
 }
 
+.fixedchargesStyle {
+  margin-top: 10px;
+}
 
+.tableStyle {
+  margin-bottom: 30px;
+}
 
 @media only screen and (max-width: 600px) {
   .form-box {
@@ -145,17 +171,8 @@ tfoot td {
     justify-content: space-between;
   }
   
-  .unitsStyle {
-    display: flex;
-    text-align: left;
-    padding-bottom: 3%;
-    justify-content: space-between;
-  }
-  
   .submitStyle {
-    display: block;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 5%;
+    padding: 3%;
+
   } 
 }

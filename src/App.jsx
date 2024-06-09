@@ -32,11 +32,16 @@ function App() {
 
   };
 
+  const goBack = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="form-box">
-        <h4>Electricity Bill Calculator</h4>
-        <form className="formStyle" onSubmit={handleSubmit}>
+        <h4>electricity bill calculator</h4>
+        { !result &&
+        <form className="formStyle" onSubmit={handleSubmit} result>
           <label className="stateStyle">
             State:
             <select className="fieldStyle" name="selectedState" value={formData.selectedState} onChange={handleChange}>
@@ -50,7 +55,7 @@ function App() {
               ))}
             </select>
           </label>
-          <label className="unitsStyle">
+          <label>
             Consumed Units:
             <input
               className="fieldStyle-1"
@@ -61,21 +66,23 @@ function App() {
               onChange={handleChange}
             />
           </label>
+          <p>Note: Fixed charges are calculated assuming the billing is Bi-Monthly</p>
           <input className="submitStyle" type="submit" value="Calculate" />
         </form>
+        }
         {result && (
           <div className="result">
             <h5>Total Billabe Amount:</h5>
-            <h2>{`Rs. ${Math.round(result.bill)}`}</h2>
+            <h2>{`₹ ${Math.round(result.bill)}`}</h2>
             <h5>Break up of the bill </h5>
-            <table>
+            <table style={{ border: 'none' }} className="tableStyle">
               <thead>
                 <tr>
-                  <th scope="col">From Unit</th>
-                  <th scope="col">To Unit</th>
-                  <th scope="col">Units</th>
-                  <th scope="col">Rate</th>
-                  <th scope="col">Amount</th>
+                  <th scope="col" className="roundCorner1">From Unit</th>
+                  <th scope="col" className="bcFix">To Unit</th>
+                  <th scope="col" className="bcFix">Units (1 kWh)</th>
+                  <th scope="col" className="bcFix">Rate (in ₹)</th>
+                  <th scope="col" className="roundCorner2">Amount (in ₹)</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,11 +92,34 @@ function App() {
                   <td>{item.toUnit}</td>
                   <td>{item.units}</td>
                   <td>{item.rate}</td>
-                  <td>{item.cost}</td>
+                  <td>{Math.round(item.cost)}</td>
                 </tr>
               ))}
             </tbody>
+            <tbody>
+              {result.customerCharge.map((item, index) => (
+                <tr key={index}>
+                  <td style={{ border: 'none' }}></td>
+                  <td style={{ border: 'none' }}></td>
+                  <td style={{ border: 'none' }}></td>
+                  <td>{item.addCharges}</td>
+                  <td>{Math.round(item.cost)}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tbody>
+              <tr>
+                <td style={{ border: 'none' }}></td>
+                <td style={{ border: 'none' }}></td>
+                <td style={{ border: 'none' }}></td>
+                <td className="roundCorner3"><strong>Total Bill</strong></td>
+                <td className="roundCorner4"><strong>₹{Math.round(result.bill)}</strong></td>
+              </tr>
+            </tbody>
             </table>
+            <button type="button" className="submitStyle" onClick={goBack}>Go Back</button>
+            <p className="marginGap">{`${result.sourceText}`}</p>
+            <p>{`${result.lastUpdateText}`}</p>
           </div>
         )}
       </div>
