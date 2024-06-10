@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    align-items: left;
+    margin: 1.5% auto;
+    max-width: 50%;
+    justify-content: space-between;
+    background-color: #333;
+    font-family: "Anek Latin", sans-serif;
+    font-size: medium;
+    padding: 1rem;
+    padding-left: 27px;
+    padding-right: 27px;
+    border-radius: 20px;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .navbar-links li {
+    margin-left: 2.5rem;
+  }
+  
+  .navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .navbar-links a:hover {
+    color: #ddd;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .navbar {
+      margin: 5% auto;
+      max-width: 80%;
+      font-size: small;
+    }
+  }
