@@ -13,7 +13,7 @@ function tamilnaduRate(units) {
     let bill = 0;
     let breakdown = [];
     let customerCharge = [];
-    const sourceText = "*Rates from Tamil Nadu Generation and Distribution Corporation";
+    const sourceText = "* Rates from Tamil Nadu Generation and Distribution Corporation";
     const lastUpdateText = "Last Updated: June 2024";
     
     if (units >= 0 && units <= 100) {

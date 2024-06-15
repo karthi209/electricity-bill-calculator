@@ -19,7 +19,7 @@ function telanganaRate(units) {
     let bill = 0;
     let breakdown = [];
     let customerCharge = [];
-    const sourceText = "*Rates from Telangana State Northern Power Distribution Company Limited, Telangana State Southern Power Distribution Company Limited";
+    const sourceText = "* Rates from Telangana State Northern Power Distribution Company Limited, Telangana State Southern Power Distribution Company Limited";
     const lastUpdateText = "Last Updated: June 2024";
   
     if (units >= 0 && units <= 50) {

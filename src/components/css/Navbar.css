@@ -1,41 +1,82 @@
 .navbar {
     display: flex;
-    align-items: left;
     margin: 1.5% auto;
-    max-width: 50%;
+    max-width: 90%;
     justify-content: space-between;
-    background-color: #333;
     font-family: "Anek Latin", sans-serif;
     font-size: medium;
-    padding: 1rem;
+    font-weight: bold;
     padding-left: 27px;
     padding-right: 27px;
-    border-radius: 20px;
   }
   
   .navbar-links {
     display: flex;
     list-style: none;
+    /* margin-right: 30px; */
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
   }
   
   .navbar-links li {
-    margin-left: 2.5rem;
+    margin-left: 3.5rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
+
+  .navbar-links li:hover {
+    background-color: whitesmoke;
+    transform: scale(1.1);
+  }
+
+  .selected {
+    background-color: whitesmoke; /* Color of the selected item */
+  }
+
+  .compareBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    max-width: 90%;
+    margin: auto;
+    min-height: 75vh;
+  }
+
+  .compareBox h3 {
+    font-size: 24px;
+  }
+
+  .compareBox p {
+    padding-bottom: 20px;
+  }
+
+  .itemCompare {
+    width: 100%;
+    max-width: 50%;
   }
   
   .navbar-links a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
-    font-size: 1.1rem;
-  }
-  
-  .navbar-links a:hover {
-    color: #ddd;
+    font-size: 1rem;
   }
 
-  @media only screen and (max-width: 1000px) {
+  .styleMenu {
+    display: flex;
+    justify-content: right;
+    
+  }
+
+  @media only screen and (max-width: 600px) {
+    
     .navbar {
-      margin: 5% auto;
-      max-width: 80%;
-      font-size: small;
+      display: none;
+    };
+
+    .styleMenu {
+      display: flex;
+
     }
   }

@@ -31,24 +31,30 @@ router.post('/calculate', (req, res) => {
     return res.status(400).json({ error: 'Invalid number of units' });
   }
 
-  let bill, breakdown, customerCharge, sourceText, lastUpdateText;
-  if (typeof rate === 'function') {
-    // Call the specific rate function for the state
-    const result = rate(unitCount);
-    bill = result.bill;
-    breakdown = result.breakdown;
-    customerCharge = result.customerCharge;
-    sourceText = result.sourceText;
-    lastUpdateText = result.lastUpdateText;
-  } else {
-    // Use the flat rate
-    bill = rate * unitCount;
-    breakdown = [{ fromUnit: 1, toUnit: unitCount, units: unitCount, rate: rate, cost: bill }];
-    
+  const result = rate(unitCount);
+
+  res.json(result);
+});
+
+router.post('/compare', (req, res) => {
+  const { units } = req.body;
+  const unitCount = parseFloat(units);
+
+  if (isNaN(unitCount) || unitCount < 0) {
+    return res.status(400).json({ error: 'Invalid number of units' });
   }
 
-  res.json({ bill, breakdown, customerCharge, sourceText, lastUpdateText });
+  const Bills = {};
 
+  for (const state in rates) {
+    if (rates.hasOwnProperty(state)) {
+      const rate = rates[state];
+      const result = rate(unitCount);
+      Bills[state] = result.bill;
+    }
+  }
+
+  res.json({ Bills });
 });
 
 app.use(`/.netlify/functions/api`, router);
