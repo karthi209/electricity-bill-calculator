@@ -27,7 +27,7 @@ function Compare() {
       setLoading(true);
       try {
         const response = await fetch(
-          "http://localhost:9000/.netlify/functions/api/compare",
+          "https://electriclitybillcalculator.netlify.app/.netlify/functions/api/compare",
           {
             method: "POST",
             headers: {
